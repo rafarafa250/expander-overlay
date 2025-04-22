@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      #expander {
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(353deg, #FFF5D2, #F2DECC);
+        transform: scaleY(0);
+        transform-origin: top;
+        opacity: 0;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+        position: relative;
+      }
+
+      #expander.show {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="expander"></div>
+    <script>
+      window.addEventListener('message', function (event) {
+        const action = event.data;
+        const expander = document.getElementById('expander');
+        if (action === 'expand') {
+          expander.classList.add('show');
+        } else if (action === 'collapse') {
+          expander.classList.remove('show');
+        }
+      });
+    </script>
+  </body>
+</html>
